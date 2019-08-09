@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import uuid from 'uuid';
 import { connect } from 'react-redux';
 import { addQuote } from '../actions/quotes';
 
 class QuoteForm extends Component {
 
   state = {
-    //set up a controlled form with internal state
+    content: "",
+    author: ""
   }
 
   handleOnChange = event => {
     // Handle Updating Component State
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
   handleOnSubmit = event => {
+    event.preventDefault()
+    this.props.dispatch(addQuote(this.state))
+    this.setState({
+      content: "",
+      author: ""
+    })
     // Handle Form Submit event default
     // Create quote object from state
     // Pass quote object to action creator
@@ -33,6 +42,8 @@ class QuoteForm extends Component {
                     <div className="col-md-5">
                       <textarea
                         className="form-control"
+                        name="content"
+                        onChange={(event) => this.handleOnChange(event)}
                         value={this.state.content}
                       />
                     </div>
@@ -42,14 +53,16 @@ class QuoteForm extends Component {
                     <div className="col-md-5">
                       <input
                         className="form-control"
+                        name="author"
                         type="text"
+                        onChange={(event) => this.handleOnChange(event)}
                         value={this.state.author}
                       />
                     </div>
                   </div>
                   <div className="form-group">
                     <div className="col-md-6 col-md-offset-4">
-                      <button type="submit" className="btn btn-default">Add</button>
+                      <button type="submit" className="btn btn-default" onClick={(event) => this.handleOnSubmit(event)}>Add</button>
                     </div>
                   </div>
                 </form>
