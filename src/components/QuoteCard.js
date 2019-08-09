@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const QuoteCard = ({upvoteQuote, downvoteQuote, quote}) =>
+const QuoteCard = ({upvoteQuote, downvoteQuote, removeQuote, quote}) =>
 
   <div>
     <div className="card card-inverse card-success card-primary mb-3 text-center">
@@ -30,6 +30,7 @@ const QuoteCard = ({upvoteQuote, downvoteQuote, quote}) =>
           <button
             type="button"
             className="btn btn-danger"
+            onClick={() => removeQuote(quote.id)}
           >
             <span aria-hidden="true">&times;</span>
           </button>
