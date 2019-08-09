@@ -1,7 +1,28 @@
 // TODO: Create action creators as defined in tests
-export function addQuote(state){
+export function addQuote(formData){
     return {
         type: 'ADD_QUOTE',
-        quote: state
+        quote: formData
+    }
+}
+
+export function removeQuote (id) {
+    return{
+        type: 'REMOVE_QUOTE',
+        quoteId: id
+    }
+}
+
+export function upvoteQuote (id) {
+    return {
+        type: 'UPVOTE_QUOTE',
+        quoteId: id
+    }
+}
+
+export function downvoteQuote (id) {
+    return {
+        type: 'DOWNVOTE_QUOTE',
+        quoteId: id
     }
 }
